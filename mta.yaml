@@ -1,0 +1,62 @@
+## Generated mta.yaml based on template version 0.3.0
+## appName = test
+## language=nodejs; multiTenant=true
+## approuter=
+_schema-version: '3.1'
+ID: test
+version: 1.0.0
+description: "A simple CAP project."
+parameters:
+  enable-parallel-deployments: true
+
+modules:
+ # --------------------- SERVER MODULE ------------------------
+ - name: test-srv
+ # ------------------------------------------------------------
+   type: nodejs
+   path: gen/srv
+   properties:
+     SAP_JWT_TRUST_ACL: [{"clientid":"*","identityzone":"sap-provisioning"}]  # Trust between server and SaaS Manager
+   requires:
+    # Resources extracted from CAP configuration
+    - name: test-db-mt
+    - name: test-uaa-mt
+   provides:
+    - name: srv-api      # required by consumers of CAP services (e.g. approuter)
+      properties:
+        srv-url: ${default-url}
+    - name: mtx-api      # potentially required by approuter
+      properties:
+        mtx-url: ${default-url}
+
+
+
+resources:
+ # services extracted from CAP configuration
+ # 'service-plan' can be configured via 'cds.requires.<name>.vcap.plan'
+# ------------------------------------------------------------
+ - name: test-db-mt
+# ------------------------------------------------------------
+   type: org.cloudfoundry.managed-service
+   parameters:
+     service: managed-hana
+     service-plan: hdi-shared
+   properties:
+     hdi-service-name: ${service-name}
+
+# ------------------------------------------------------------
+ - name: test-uaa-mt
+# ------------------------------------------------------------
+   type: org.cloudfoundry.managed-service
+   parameters:
+     service: xsuaa
+     service-plan: application  
+     config:
+       xsappname: -${space}    #  name + space dependency
+       tenant-mode: dedicated
+       ##  path to xs-security.json to add roles and scopes
+       # path: ./xs-security.json
+       ## or inline definition
+       # scopes:
+       # - name: $XSAPPNAME...
+

@@ -1,0 +1,26 @@
+{
+    "name": "test",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@sap/cds": "^4.1.7",
+        "@sap/cds-mtx": "^1",
+        "@sap/hana-client": "^2.5.105",
+        "@sap/hdi-deploy": "^3.11.4",
+        "@sap/instance-manager": "^2",
+        "@sap/xssec": "^3.0.9",
+        "express": "^4",
+        "passport": "^0.4.0"
+    },
+    "devDependencies": {
+        "prettier": "^2.0.5"
+    },
+    "scripts": {
+        "start": "cds run",
+        "build:mta": "mbt build -p=cf -t=build --mtar=test.mtar",
+        "deploy": "cf deploy ./build/test.mtar -f"
+    }
+}

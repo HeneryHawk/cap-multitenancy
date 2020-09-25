@@ -1,0 +1,36 @@
+{
+    "eslint.validate": ["javascript", "typescript"],
+    "files.exclude": {
+        "**/node_modules": true,
+        "**/.mta": true
+    },
+    "eslint.packageManager": "npm",
+    "jest.rootPath": "/modules/p20g-api-service",
+    "jest.pathToJest": "npm run test:unit",
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "[cds]": {
+        "editor.defaultFormatter": "SAPSE.vscode-cds"
+    },
+    "vsicons.associations.files": [
+        {
+            "icon": "license",
+            "extensions": ["authorization.cds"],
+            "format": "svg"
+        },
+        {
+            "icon": "json",
+            "extensions": ["annotations.cds", "cds"],
+            "format": "svg"
+        }
+    ],
+    "files.eol": "\n",
+    "javascript.format.insertSpaceBeforeFunctionParenthesis": false,
+    "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+    "typescript.format.insertSpaceBeforeFunctionParenthesis": false,
+    "typescript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+    "prettier.printWidth": 160,
+    "prettier.requireConfig": true,
+    "prettier.tabWidth": 4,
+    "editor.cursorSmoothCaretAnimation": true,
+    "editor.formatOnSave": true
+}

@@ -1,0 +1,26 @@
+{
+    "mtx": {
+        "element-prefix": ["Z_", "ZZ_"],
+        "namespace-blacklist": ["com.sap.", "sap."],
+        "entity-whitelist": ["sap.capire.bookshop.Books"],
+        "service-whitelist": ["CatalogService"],
+        "app": {
+            "urlpart": "-m20ndev-m20n-app-router.cfapps.eu10.hana.ondemand.com"
+        }
+    },
+    "odata": { "version": "v4" },
+    "requires": {
+        "db": {
+            "kind": "hana",
+            "model": ["db", "srv"],
+            "multiTenant": true,
+            "vcap": { "label": "service-manager" }
+        },
+        "uaa": { "kind": "xsuaa" }
+    },
+    "auth": {
+        "passport": {
+            "strategy": "JWT"
+        }
+    }
+}
