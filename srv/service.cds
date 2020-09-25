@@ -3,6 +3,7 @@ using {sap.capire.bookshop as my} from '../db/schema';
 service CatalogService @(
   path     : '/browse',
   requires : 'system-user'
+// requires : 'authenticated-user'
 ) {
 
   @readonly
